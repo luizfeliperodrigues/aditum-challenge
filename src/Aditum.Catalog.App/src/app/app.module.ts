@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { TitleComponent } from './_shared/title/title.component';
 import { ProductService } from './_services/product.service';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       ProductsComponent,
-      TitleComponent
+      TitleComponent,
+      NavComponent
    ],
    imports: [
       BrowserModule,
