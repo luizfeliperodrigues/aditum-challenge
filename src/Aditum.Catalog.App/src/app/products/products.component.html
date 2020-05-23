@@ -1,18 +1,49 @@
 <app-title [title]='title'></app-title>
 
-<div *ngFor="let product of products">
-  Id: {{product.id}}
-  <br>
-  Nome: {{product.name}}
-  <br>
-  Descrição: {{product.description}}
-  <br>
-  Quantidade: {{product.amount}}
-  <br>
-  Peso: {{product.weight}}
-  <br>
-  Altura: {{product.hight}}
-  <br>
-  Largura: {{product.width}}
-  <hr>
+<div class="d-flex">  
+  <button class="btn btn-outline-primary">
+    <i class="fa fa-plus-circle"></i>&nbsp;
+    Criar Leilão
+  </button>
 </div>
+
+<br>
+
+<table class="table table-stripped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Quantidade</th>
+      <th colspan="2" class="text-center">Opções</th>
+    </tr>
+  </thead>
+  
+  <tbody *ngIf="products && products.length">
+    <tr *ngFor="let product of products">
+      <td>{{product.name}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.amount}}</td>
+      <td>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-success" 
+          tooltip="Editar">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" 
+          tooltip="Excluir">
+            <i class="fa fa-eraser"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+  <tfoot *ngIf="!products">
+    <tr>
+      <td colspan="7" class="text-centered">
+        <h4>Nenhum produto encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
