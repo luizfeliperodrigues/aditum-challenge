@@ -1,3 +1,18 @@
-<p>
-  products works!
-</p>
+<app-title [title]='title'></app-title>
+
+<div *ngFor="let product of products">
+  Id: {{product.id}}
+  <br>
+  Nome: {{product.name}}
+  <br>
+  Descrição: {{product.description}}
+  <br>
+  Quantidade: {{product.amount}}
+  <br>
+  Peso: {{product.weight}}
+  <br>
+  Altura: {{product.hight}}
+  <br>
+  Largura: {{product.width}}
+  <hr>
+</div>
