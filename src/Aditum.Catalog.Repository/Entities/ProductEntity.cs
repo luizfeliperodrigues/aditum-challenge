@@ -1,4 +1,5 @@
 ﻿using Aditum.Catalog.Model;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDbGenericRepository.Attributes;
 using MongoDbGenericRepository.Models;
 using System;
