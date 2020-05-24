@@ -1,9 +1,9 @@
 <app-title [title]='title'></app-title>
 
 <div class="d-flex">  
-  <button class="btn btn-outline-primary">
+  <button class="btn btn-outline-primary" (click)="newProduct(CreateOrEdit)">
     <i class="fa fa-plus-circle"></i>&nbsp;
-    Criar Leilão
+    Criar Produto
   </button>
 </div>
 
@@ -47,3 +47,106 @@
     </tr>
   </tfoot>
 </table>
+
+<div bsModal #CreateOrEdit="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Criar Produto</h4>
+        <button type="button" class="close pull-right" (click)="CreateOrEdit.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Nome</label>
+              
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('name').errors && registerForm.get('name').touched}"
+              formControlName="name" placeholder="Nome">
+              
+              <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched" class="invalid-feedback">
+                O campo é obrigatório.
+              </div>
+            </div>
+          </div>
+            
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>Descrição</label>
+              <textarea type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('description').errors && registerForm.get('description').touched}"
+              formControlName="description" placeholder="Descrição"></textarea>
+              
+              <div *ngIf="registerForm.get('description').hasError('required') && registerForm.get('description').touched" class="invalid-feedback">
+                O campo é obrigatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Quantidade</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('amount').errors && registerForm.get('amount').touched}"
+              formControlName="amount" placeholder="#######">
+              
+              <div *ngIf="registerForm.get('amount').hasError('required') && registerForm.get('amount').touched" class="invalid-feedback">
+                O campo é obrigatório.
+              </div>
+              
+              <div *ngIf="registerForm.get('amount').hasError('pattern') && registerForm.get('amount').touched" class="invalid-feedback">
+                Só deve conter números.
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Peso</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('weight').errors && registerForm.get('weight').touched}"
+              formControlName="weight" placeholder="Peso">
+              
+              <div *ngIf="registerForm.get('weight').hasError('pattern') && registerForm.get('weight').touched" class="invalid-feedback">
+                Só deve conter números.
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Altura</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('hight').errors && registerForm.get('hight').touched}"
+              formControlName="hight" placeholder="Altura">
+              
+              <div *ngIf="registerForm.get('hight').hasError('pattern') && registerForm.get('hight').touched" class="invalid-feedback">
+                Só deve conter números.
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Largura</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.get('width').errors && registerForm.get('width').touched}"
+              formControlName="width" placeholder="Largura">
+              
+              <div *ngIf="registerForm.get('width').hasError('pattern') && registerForm.get('width').touched" class="invalid-feedback">
+                Só deve conter números.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer d-flex">
+        <button class="btn btn-secondary" (click)="CreateOrEdit.hide()">
+          Fechar
+        </button>
+        
+        <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="saveProduct(CreateOrEdit)">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
