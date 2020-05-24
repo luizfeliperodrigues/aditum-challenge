@@ -13,7 +13,7 @@ getAllProducts(): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.baseURL}`);
 }
 
-getProductById(id: number): Observable<Product>{
+getProductById(id: string): Observable<Product>{
     return this.http.get<Product>(`${this.baseURL}/${id}`);
 }
 

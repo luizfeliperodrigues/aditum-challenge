@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   product: Product;
   registerForm: FormGroup;
+  bodyDeleteProduct = '';
 
   infoSave = 'post';
 
@@ -95,6 +96,23 @@ export class ProductsComponent implements OnInit {
     this.openModal(template);
     this.product = product;
     this.registerForm.patchValue(product);
+  }
+
+  excludeProduct(product: Product, template: any) {
+    this.openModal(template);
+    this.product = product;
+    this.bodyDeleteProduct = `Tem certeza que deseja excluir o produto: ${product.name}?`;
+  }
+
+  confirmDelete(template: any) {
+    this.productService.deleteProduct(this.product.id).subscribe(
+      () => {
+          template.hide();
+          this.getProducts();
+        }, error => {
+          console.log(error);
+        }
+    );
   }
 
 }
