@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace Aditum.Catalog.WebApi.Controllers
 {
@@ -68,12 +69,14 @@ namespace Aditum.Catalog.WebApi.Controllers
 
         // Read all products
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] int? page)
         {
             try
             {
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
                 var products = new List<Product>();
-                var getProducts = this.productRepository.GetAll();
+                var getProducts = this.productRepository.GetAll().ToPagedList(pageNumber, pageSize);
 
                 foreach (var product in getProducts)
                 {
