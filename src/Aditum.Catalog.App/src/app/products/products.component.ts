@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit {
   {
     this.productService.getAllProducts().subscribe(
       (response: any) => {
-        console.log(response);
         this.products = response.products;
       }, error => {
         // this.toastr.error(`Erro ao tentar carregar os produtos: ${error}`);
@@ -44,12 +43,13 @@ export class ProductsComponent implements OnInit {
 
   validation(){
     this.registerForm = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      amount: ['', [Validators.required, Validators.pattern('[1-9]*')]],
-      weight: ['', Validators.pattern('[1-9]*')],
-      hight: ['', Validators.pattern('[1-9]*')],
-      width: ['', Validators.pattern('[1-9]*')]
+      amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      weight: ['', Validators.pattern('[0-9]*')],
+      hight: ['', Validators.pattern('[0-9]*')],
+      width: ['', Validators.pattern('[0-9]*')]
     });
   }
 

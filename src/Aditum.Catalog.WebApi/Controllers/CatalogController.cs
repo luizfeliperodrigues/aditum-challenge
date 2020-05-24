@@ -59,10 +59,9 @@ namespace Aditum.Catalog.WebApi.Controllers
                     newProduct,
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Returns 500 if an unexpected exception occurres:
-                Console.WriteLine(ex.Message);
                 return base.StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -79,13 +78,15 @@ namespace Aditum.Catalog.WebApi.Controllers
                 foreach (var product in getProducts)
                 {
                     products.Add(new Product{
+                        Id = product.Id,
                         Name = product.Name,
                         Description = product.Description,
                         Amount = product.Amount,
                         Weight = product.Weight,
                         Hight = product.Hight,
                         Width = product.Width
-                    });
+                        }
+                    );
                 }
 
                 return Ok(new
