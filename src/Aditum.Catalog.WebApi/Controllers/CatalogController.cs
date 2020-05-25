@@ -69,14 +69,12 @@ namespace Aditum.Catalog.WebApi.Controllers
 
         // Read all products
         [HttpGet]
-        public IActionResult Get([FromQuery] int? page)
+        public IActionResult Get()
         {
             try
             {
-                int pageSize = 10;
-                int pageNumber = page ?? 1;
                 var products = new List<Product>();
-                var getProducts = this.productRepository.GetAll().ToPagedList(pageNumber, pageSize);
+                var getProducts = this.productRepository.GetAll();
 
                 foreach (var product in getProducts)
                 {

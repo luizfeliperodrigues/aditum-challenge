@@ -20,7 +20,7 @@
   </thead>
   
   <tbody *ngIf="products && products.length">
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: page}">
       <td>{{product.name}}</td>
       <td>{{product.description}}</td>
       <td>{{product.amount}}</td>
@@ -47,6 +47,18 @@
     </tr>
   </tfoot>
 </table>
+
+<div class="d-flex" *ngIf="products">
+  <pagination-controls 
+    (pageChange)="page = $event"
+    previousLabel="Previous"
+    nextLabel="Next"
+    directionLinks="true"
+    autoHide="true"
+    maxSize="5"
+    boundaryLimits="true">
+  </pagination-controls>
+</div>
 
 <div bsModal #CreateOrEdit="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">

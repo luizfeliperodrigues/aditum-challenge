@@ -72,9 +72,7 @@ namespace Aditum.Catalog.Repository.Repositories
         /// </summary>
         public void DeleteById(Guid productId)
         {
-            Console.WriteLine("1");
             this.mongoRepository.DeleteOne<ProductEntity>(p => p.Id == productId);
-            Console.WriteLine("2");
         }
 
         public ProductRepository()

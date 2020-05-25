@@ -16,6 +16,9 @@ export class ProductsComponent implements OnInit {
   registerForm: FormGroup;
   bodyDeleteProduct = '';
 
+  page: number = 1;
+  totalProducts: string;
+
   infoSave = 'post';
 
   constructor(
@@ -34,6 +37,7 @@ export class ProductsComponent implements OnInit {
     this.productService.getAllProducts().subscribe(
       (response: any) => {
         this.products = response.products;
+        this.totalProducts = this.products.length + '';
       }, error => {
         // this.toastr.error(`Erro ao tentar carregar os produtos: ${error}`);
         console.log(error);
