@@ -6,6 +6,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { ProductService } from './_services/product.service';
 
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      NgxPaginationModule
+      NgxPaginationModule,
+      Ng2SearchPipeModule
    ],
    providers: [
       ProductService
